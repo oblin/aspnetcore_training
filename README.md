@@ -1,6 +1,7 @@
 # 此段為示範 Aspnet core 的教學文件
 
 這個是內部的教學使用，教導如何由無到有建立 Aspnet core 的專案
+請依據不同的 branch 對應不同的章節教學
 
 ## This application consists of:
 
