@@ -33,9 +33,8 @@ namespace OdeToFood
         {
             services.AddSingleton<IConfiguration>(Configuration);
             // services.AddSingleton(_ => Configuration); // 與上面內容等效
-            services.AddEntityFrameworkSqlServer()
-                    .AddDbContext<FoodDbContext>(options => 
-                        options.UseSqlServer(Configuration["database:connection"]));
+            services.AddDbContext<FoodDbContext>(options => 
+                        options.UseNpgsql(Configuration["pgdatabase:connection"]));
 
             services.AddSingleton<IGreeter, Greeter>();
             services.AddScoped<IRestaurantData, SqlRestaurantData>();

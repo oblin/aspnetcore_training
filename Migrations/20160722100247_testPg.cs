@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace aspnetcore_training.Migrations
 {
-    public partial class v1 : Migration
+    public partial class testPg : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +13,7 @@ namespace aspnetcore_training.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
                     Cuisine = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true)
                 },
