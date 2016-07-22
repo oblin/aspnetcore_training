@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OdeToFood.Services;
+using OdeToFood.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace OdeToFood
 {
@@ -31,9 +33,12 @@ namespace OdeToFood
         {
             services.AddSingleton<IConfiguration>(Configuration);
             // services.AddSingleton(_ => Configuration); // 與上面內容等效
+            services.AddEntityFrameworkSqlServer()
+                    .AddDbContext<FoodDbContext>(options => 
+                        options.UseSqlServer(Configuration["database:connection"]));
 
             services.AddSingleton<IGreeter, Greeter>();
-            services.AddScoped<IRestaurantData, InMemoryRestaurantData>();
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
 
             services.AddMvc();
         }
