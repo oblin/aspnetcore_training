@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace OdeToFood.Entities
 {
@@ -16,6 +13,9 @@ namespace OdeToFood.Entities
     public class Restaurant
     {
         public int Id { get; set; }
+
+        [RequiredAttribute, MaxLengthAttribute(50)]
+        [DisplayAttribute(Name="餐廳名稱")]
         public string Name { get; set; }
         public CuisineType Cuisine { get; set; }
     }
