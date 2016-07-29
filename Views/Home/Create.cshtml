@@ -1,23 +1,20 @@
 @using OdeToFood.Entities
 @model Restaurant
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Create</title>
-    </head>
-    <body>
-        <h1>Create</h1>
-        @using (Html.BeginForm())
-        {
-            @Html.HiddenFor(m => m.Id)
-            <div>
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name)
-            </div>
-            <div>
-                @Html.LabelFor(m => m.Cuisine)
-                @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
-            </div>
-            <input type="submit" value="Save" />
-        }
-    </body>
-</html>
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h1>Create</h1>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Cuisine)
+        @Html.DropDownListFor(m => m.Cuisine, Html.GetEnumSelectList(typeof(CuisineType)))
+    </div>
+    <input type="submit" value="Save" />
+}
