@@ -11,10 +11,11 @@
         @foreach(var restaurant in Model.Restaurants)
         {
             <tr>
-                <td>
-                    <a asp-action="Details" asp-route-id="@restaurant.Id">Detail for @restaurant.Id</a>
-                </td>
                 <td>@restaurant.Name</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@restaurant.Id">檢視</a>
+                    <a asp-action="Edit" asp-route-id="@restaurant.Id">編輯</a>
+                </td>
             </tr>
         }
     </table>
