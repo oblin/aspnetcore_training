@@ -1,25 +1,23 @@
 @model OdeToFood.ViewModels.HomePageViewModel
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Welcome!</h1>
 <h3>@Model.CurrentGreeting</h3>
+
+@foreach(var restaurant in Model.Restaurants)
+{
+    @Html.Partial("_Summary", restaurant)
+}
+
 <div>
-    This is the home page. <br />
-    <table>
-        @foreach(var restaurant in Model.Restaurants)
-        {
-            <tr>
-                <td>@restaurant.Name</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@restaurant.Id">檢視</a>
-                    <a asp-action="Edit" asp-route-id="@restaurant.Id">編輯</a>
-                </td>
-            </tr>
-        }
-    </table>
-    <a href="/home/create">Create</a>
     <a asp-action="Create">Create 2</a>
-    <!--<a asp-controller="Home" asp-action="Create">Create 2</a>-->
 </div>
+
+@section footer {
+    <div>
+        @Model.CurrentGreeting
+    </div>
+}
