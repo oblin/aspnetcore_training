@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using OdeToFood.Services;
 using OdeToFood.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace OdeToFood
 {
@@ -39,6 +40,9 @@ namespace OdeToFood
             services.AddSingleton<IGreeter, Greeter>();
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
 
+            services.AddIdentity<User, IdentityRole>()
+                    .AddEntityFrameworkStores<FoodDbContext>();
+
             services.AddMvc();
         }
 
@@ -54,6 +58,8 @@ namespace OdeToFood
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseIdentity();
+            
             app.UseMvc(ConfigureRoute);
 
             app.Run(async (context) =>

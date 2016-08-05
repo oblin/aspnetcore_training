@@ -1,3 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +9,20 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div>@DateTime.Now.Year</div>
+    <div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div>Hello @UserManager.GetUserName(User)!</div>
+            <form asp-action="Logout" asp-controller="Account">
+                <input type="submit" value="Logout" />
+            </form>
+        }
+        else 
+        {
+            <a asp-controller="Account" asp-action="Login">Login</a>
+            <a asp-controller="Account" asp-action="Register">註冊帳號</a>
+        }
+    </div>
     <div>
         @RenderBody()
     </div>
