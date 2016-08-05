@@ -1,0 +1,26 @@
+@model OdeToFood.Entities.Restaurant
+<<<<<<< HEAD
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>@Model.Name</title>
+    </head>
+    <body>        
+        <h1>@Model.Name</h1>
+        <div>Id: @Model.Id</div>
+        <div>Cuisine: @Model.Cuisine</div>
+        <div>
+            @Html.ActionLink("Back Home", "Index")
+        </div>
+    </body>
+</html>
+=======
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h1>@Model.Name</h1>
+<h3>@Model.Cuisine</h3>
+<div>
+    @Html.ActionLink("Back Home", "Index")
+</div>
+>>>>>>> 768052ce9004c08fd3f06f02c46e09ec82192afb

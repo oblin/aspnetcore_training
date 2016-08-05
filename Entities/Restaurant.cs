@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-
 namespace OdeToFood.Entities
 {
     public enum CuisineType

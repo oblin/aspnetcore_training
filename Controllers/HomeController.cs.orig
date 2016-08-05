@@ -1,0 +1,99 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OdeToFood.Entities;
+using OdeToFood.Services;
+using OdeToFood.ViewModels;
+
+namespace OdeToFood.Controllers
+{
+    [Authorize]
+    public class HomeController : Controller
+    {
+        public HomeController(IGreeter greeting, IRestaurantData restaurantData)
+        {
+            _greeter = greeting;
+            _restaurantData = restaurantData;
+        }
+
+        private IGreeter _greeter;
+        private IRestaurantData _restaurantData;
+
+        [AllowAnonymous]
+        public ViewResult Index()
+        {
+            var model = new HomePageViewModel();
+            model.Restaurants = _restaurantData.GetAll();
+            model.CurrentGreeting = _greeter.GetGreeting();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ViewResult Create()
+        {
+            return View();
+        }
+<<<<<<< HEAD
+
+=======
+        
+>>>>>>> 768052ce9004c08fd3f06f02c46e09ec82192afb
+        [HttpPost]
+        public IActionResult Create(RestaurantEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var restaurant = new Restaurant
+                {
+                    Name = model.Name,
+                    Cuisine = model.Cuisine
+                };
+                _restaurantData.Add(restaurant);
+<<<<<<< HEAD
+=======
+                _restaurantData.Commit();
+>>>>>>> 768052ce9004c08fd3f06f02c46e09ec82192afb
+
+                return RedirectToAction("Details", new { id = restaurant.Id });
+            }
+            return View();
+        }
+
+<<<<<<< HEAD
+=======
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var model = _restaurantData.Get(id);
+            if (model == null)
+                return RedirectToAction("Index");
+            return View(model);
+        }
+        
+        [HttpPost]
+        public IActionResult Edit(int id, RestaurantEditViewModel input)
+        {
+            var restaurant = _restaurantData.Get(id);
+            if (ModelState.IsValid && restaurant != null)
+            {
+                restaurant.Name = input.Name;
+                restaurant.Cuisine = input.Cuisine;
+                _restaurantData.Commit();
+
+                return RedirectToAction("Details", new { id = restaurant.Id });
+            }
+
+            return View(restaurant);
+        }
+
+>>>>>>> 768052ce9004c08fd3f06f02c46e09ec82192afb
+        public IActionResult Details(int id)
+        {
+            var model = _restaurantData.Get(id);
+            if (model == null)
+                return NotFound();
+            return View(model);
+        }
+    }
+}

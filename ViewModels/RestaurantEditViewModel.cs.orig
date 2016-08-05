@@ -9,4 +9,8 @@ namespace OdeToFood.ViewModels
         public string Name { get; set; }
         public CuisineType Cuisine { get; set; }        
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 768052ce9004c08fd3f06f02c46e09ec82192afb

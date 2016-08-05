@@ -1,0 +1,26 @@
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>使用者登入</h2>
+
+<form asp-action="Login" method="POST" asp-route-returnurl="@Model.ReturnUrl">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Username"></label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="RememeberMe"></label>
+        <input asp-for="RememeberMe" />
+        <span asp-validation-for="RememeberMe"></span>
+    </div>
+    <input type="submit" value="Loging" />
+</form>

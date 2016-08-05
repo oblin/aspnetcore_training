@@ -1,8 +1,7 @@
 {
   "dependencies": {
     "Microsoft.NETCore.App": {
-      "version": "1.0.0",
-      "type": "platform"
+      "version": "1.0.0"
     },
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
@@ -15,6 +14,12 @@
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.Extensions.Configuration.CommandLine": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.1",
+    "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
+      "version": "1.0.1",
+      "type": "build"
+    },
     "Microsoft.EntityFrameworkCore.Design": {
       "version": "1.0.0-preview2-final",
       "type": "build"
@@ -39,6 +44,11 @@
     "debugType": "portable",
     "emitEntryPoint": true,
     "preserveCompilationContext": true
+  },
+
+  "runtimes": {
+	    "win10-x64": { },
+	    "centos.7-x64": {}
   },
 
   "runtimeOptions": {

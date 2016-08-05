@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using OdeToFood.Entities;
 using OdeToFood.Services;
 using OdeToFood.ViewModels;
 
 namespace OdeToFood.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public HomeController(IGreeter greeting, IRestaurantData restaurantData)
@@ -18,6 +18,7 @@ namespace OdeToFood.Controllers
         private IGreeter _greeter;
         private IRestaurantData _restaurantData;
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = new HomePageViewModel();
@@ -45,10 +46,36 @@ namespace OdeToFood.Controllers
                     Cuisine = model.Cuisine
                 };
                 _restaurantData.Add(restaurant);
+                _restaurantData.Commit();
 
                 return RedirectToAction("Details", new { id = restaurant.Id });
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var model = _restaurantData.Get(id);
+            if (model == null)
+                return RedirectToAction("Index");
+            return View(model);
+        }
+        
+        [HttpPost]
+        public IActionResult Edit(int id, RestaurantEditViewModel input)
+        {
+            var restaurant = _restaurantData.Get(id);
+            if (ModelState.IsValid && restaurant != null)
+            {
+                restaurant.Name = input.Name;
+                restaurant.Cuisine = input.Cuisine;
+                _restaurantData.Commit();
+
+                return RedirectToAction("Details", new { id = restaurant.Id });
+            }
+
+            return View(restaurant);
         }
 
         public IActionResult Details(int id)
