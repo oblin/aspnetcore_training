@@ -7,23 +7,34 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
-    <div>
+    
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">OdeToFood</a>
+        </div>
+        <div class="navbar navbar-nav navbar-right">
         @if (SignInManager.IsSignedIn(User))
         {
-            <div>Hello @UserManager.GetUserName(User)!</div>
-            <form asp-action="Logout" asp-controller="Account">
-                <input type="submit" value="Logout" />
+            <form asp-action="Logout" asp-controller="Account"
+                class="navbar-form">
+                Hello @UserManager.GetUserName(User)!
+                <input type="submit" value="Logout" class="btn btn-danger" />
             </form>
         }
         else 
         {
-            <a asp-controller="Account" asp-action="Login">Login</a>
-            <a asp-controller="Account" asp-action="Register">註冊帳號</a>
+            <a class="btn btn-default btn-xs navbar-btn" asp-controller="Account" asp-action="Login">Login</a>
+            <a class="btn btn-default btn-xs navbar-btn" asp-controller="Account" asp-action="Register">註冊帳號</a>
         }
-    </div>
-    <div>
+        </div>
+        </div>
+    </nav>
+    
+    <div class="container">
         @RenderBody()
     </div>
     <footer>
