@@ -55,9 +55,14 @@ namespace OdeToFood.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var model = _restaurantData.Get(id);
-            if (model == null)
+            var restaurant = _restaurantData.Get(id);
+            if (restaurant == null)
                 return RedirectToAction("Index");
+            var model = new RestaurantEditViewModel {
+                Name = restaurant.Name,
+                Cuisine = restaurant.Cuisine
+            };
+
             return View(model);
         }
         
